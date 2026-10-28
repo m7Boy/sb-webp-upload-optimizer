@@ -33,6 +33,7 @@ class SB_WebP_Upload_Optimizer_Converter {
 
 	public function register(): void {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
+		add_filter( 'wp_image_editors', array( $this, 'filter_image_editors' ) );
 		add_filter( 'image_editor_output_format', array( $this, 'filter_output_format' ), 10, 3 );
 		add_filter( 'wp_editor_set_quality', array( $this, 'filter_quality' ), 10, 3 );
 		add_filter( 'big_image_size_threshold', array( $this, 'filter_threshold' ), 10, 4 );
@@ -54,6 +55,30 @@ class SB_WebP_Upload_Optimizer_Converter {
 				'mime_type' => 'image/webp',
 			)
 		);
+	}
+
+	/**
+	 * Swaps in a GD editor that can encode indexed-color images as WebP.
+	 *
+	 * WordPress includes the core editor classes before this filter runs.
+	 *
+	 * @param mixed $editors Editor class names.
+	 * @return array<int, string>
+	 */
+	public function filter_image_editors( $editors ) {
+		if ( ! is_array( $editors ) || ! class_exists( 'WP_Image_Editor_GD', false ) ) {
+			return is_array( $editors ) ? $editors : array();
+		}
+
+		require_once __DIR__ . '/class-editor-gd.php';
+
+		foreach ( $editors as $index => $editor ) {
+			if ( 'WP_Image_Editor_GD' === $editor ) {
+				$editors[ $index ] = 'SB_WebP_Upload_Optimizer_Editor_GD';
+			}
+		}
+
+		return $editors;
 	}
 
 	/**

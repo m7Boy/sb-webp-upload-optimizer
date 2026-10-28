@@ -4,7 +4,7 @@ Tags: images, webp, performance, upload
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Author: Software Brewery
@@ -44,6 +44,9 @@ Only if you run **Convert existing images** on the settings screen. New uploads 
 WordPress keeps that file so image sizes can be rebuilt from the source. Enable **Delete the source file** only when you do not need that copy.
 
 == Changelog ==
+
+= 1.0.1 =
+* Indexed-color PNG files no longer stop WebP conversion on servers that use GD.
 
 = 1.0.0 =
 * First release.

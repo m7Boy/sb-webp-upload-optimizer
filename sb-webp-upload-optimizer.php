@@ -3,7 +3,7 @@
  * Plugin Name:       SB WebP Upload Optimizer
  * Plugin URI:        https://softwarebrewery.net
  * Description:       Converts JPEG, PNG, and HEIC uploads to WebP and limits the full-size image to a maximum edge length. Developed by Software Brewery.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.7
  * Requires PHP:      7.4
  * Author:            Software Brewery
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'SB_WEBP_UPLOAD_OPTIMIZER_FILE', __FILE__ );
-define( 'SB_WEBP_UPLOAD_OPTIMIZER_VERSION', '1.0.0' );
+define( 'SB_WEBP_UPLOAD_OPTIMIZER_VERSION', '1.0.1' );
 define( 'SB_WEBP_UPLOAD_OPTIMIZER_AUTHOR_URL', 'https://softwarebrewery.net' );
 
 require_once __DIR__ . '/includes/class-settings.php';
